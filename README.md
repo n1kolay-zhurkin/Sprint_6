@@ -8,4 +8,11 @@ pytest
 
 ## Allure
 pytest --alluredir=allure_results
-allure serve allure_results
+allure serve allure_results   
+
+
+
+
+
+
+
