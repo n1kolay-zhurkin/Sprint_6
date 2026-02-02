@@ -1,4 +1,6 @@
-# Sprint 6 — UI автотесты Яндекс.Самокат
+## Sprint 6
+UI tests with Selenium + Pytest
+
 
 ## Установка
 pip install -r requirements.txt
