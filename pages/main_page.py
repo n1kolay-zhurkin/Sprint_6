@@ -73,3 +73,4 @@ class MainPage:
             raise ValueError(f"Unknown entry point: {position}")
 
         actions.move_to_element(btn).click().perform()
+        

@@ -88,3 +88,4 @@ def test_questions(driver, base_url, question, answer):
     page.click_question(question)
     actual_answer = page.get_answer_text(question)
     assert actual_answer == answer
+    

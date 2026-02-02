@@ -44,3 +44,4 @@ def test_logos_redirects(driver, base_url, order_button_position):
     # Проверяем, что URL содержит dzen.ru (учитываем редирект через SSO)
     wait.until(lambda d: "dzen.ru" in d.current_url)
     assert "dzen.ru" in driver.current_url, f"Не открылась главная страница Дзена, получили: {driver.current_url}"
+    

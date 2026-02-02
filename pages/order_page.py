@@ -90,3 +90,4 @@ class OrderPage:
     def get_confirmation_text(self):
         wait = WebDriverWait(self.driver, 10)
         return wait.until(EC.visibility_of_element_located(self.CONFIRMATION_TEXT)).text
+

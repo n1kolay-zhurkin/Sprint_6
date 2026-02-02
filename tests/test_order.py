@@ -60,3 +60,4 @@ def test_order_scooter(driver, base_url, data, entry):
     # Проверка успешного оформления заказа
     confirmation_text = order_page.get_confirmation_text()
     assert "Заказ оформлен" in confirmation_text
+    
