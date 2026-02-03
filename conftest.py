@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+from config import BASE_URL
 
 @pytest.fixture(scope="session")
 def driver():
@@ -10,4 +11,4 @@ def driver():
 
 @pytest.fixture(scope="session")
 def base_url():
-    return "https://qa-scooter.praktikum-services.ru/"
+    return BASE_URL

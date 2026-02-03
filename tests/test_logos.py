@@ -5,6 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from pages.main_page import MainPage
 from pages.dzen_page import DzenPage
+from config import DZEN_URL_PART
+
 
 @pytest.mark.parametrize("order_button_position", ["top", "bottom"])
 def test_logos_redirects(driver, base_url, order_button_position):
@@ -16,32 +18,25 @@ def test_logos_redirects(driver, base_url, order_button_position):
 
     # 1. Переход по кнопке "Заказать"
     main_page.click_order(order_button_position)
-
-    # Переключаемся на страницу "Для кого самокат"
     driver.switch_to.window(driver.window_handles[-1])
-    wait.until(lambda d: d.title != "")
 
-    # 2. Проверка логотипа "Самокат"
+    # 2. Логотип "Самокат"
     scooter_logo = wait.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "Header_LogoScooter__3lsAR"))
     )
     scooter_logo.click()
 
-    # Должны вернуться на стартовую страницу Самоката
     wait.until(lambda d: base_url in d.current_url)
-    assert base_url in driver.current_url, f"Не вернулись на главную страницу Самоката, получили: {driver.current_url}"
+    assert base_url in driver.current_url
 
-    # 3. Проверка логотипа "Яндекса"
+    # 3. Логотип "Яндекс"
     yandex_logo = wait.until(
         EC.element_to_be_clickable((By.CLASS_NAME, "Header_LogoYandex__3TSOI"))
     )
     yandex_logo.click()
 
-    # Переключаемся на новую вкладку
     driver.switch_to.window(driver.window_handles[-1])
     dzen_page = DzenPage(driver)
 
-    # Проверяем, что URL содержит dzen.ru (учитываем редирект через SSO)
-    wait.until(lambda d: "dzen.ru" in d.current_url)
-    assert "dzen.ru" in driver.current_url, f"Не открылась главная страница Дзена, получили: {driver.current_url}"
-    
+    wait.until(lambda d: DZEN_URL_PART in d.current_url)
+    assert DZEN_URL_PART in dzen_page.get_url()
